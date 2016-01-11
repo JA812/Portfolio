@@ -70,7 +70,8 @@ for (job in work.jobs) {
     var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
     var formattedEmployerTitle = formattedEmployer + formattedTitle;
     $(".work-entry:last").append(formattedEmployerTitle);
-
+    var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+    $(".work-entry:last").append(formattedLocation);
     var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
     $(".work-entry:last").append(formattedDates);
 
@@ -82,14 +83,14 @@ for (job in work.jobs) {
 var education = {
     "schools": [{
         "name": "Georgia State University",
-        "city": "Atlanta, GA",
+        "location": "Atlanta, GA",
         "degree": "MA",
         "majors": "German Literature",
         "dates": "2009 - 2010",
         "url": "http://gsu.edu"
     }, {
         "name": "Potsdam University",
-        "city": "Potsdam, Germany",
+        "location": "Potsdam, Germany",
         "degree": "BA (US Equivalency)",
         "majors": ["English Literature/Spanish Philology"],
         "dates": "2003 - 2007",
@@ -112,7 +113,7 @@ education.display = function() {
         var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
         var formattedNameDegree = formattedName + formattedDegree;
         $(".education-entry:last").append(formattedNameDegree);
-        var formattedCity = HTMLschoolLocation.replace("%data%", education.schools[school].city);
+        var formattedCity = HTMLschoolLocation.replace("%data%", education.schools[school].location);
         $(".education-entry:last").append(formattedCity);
         var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
         $(".education-entry:last").append(formattedDates);
@@ -186,7 +187,6 @@ projects.display = function() {
 projects.display();
 
 
-$("map").append(googleMap);
 
 $(document).click(function(loc) {
     var x = loc.pageX;
@@ -194,6 +194,8 @@ $(document).click(function(loc) {
 
     logClicks(x, y);
 });
+
+$("#mapDiv").append(googleMap);
 
 $("#footerContacts").append(formattedMobile);
 $("#footerContacts").append(formattedEmail);
